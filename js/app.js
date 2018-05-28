@@ -29,7 +29,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -43,15 +42,19 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
- // Start game - display all shuffled cards
+
+ // Display shuffled cards when page loads
 displayCards();
 
-// Flip card when clicked
 const cards = document.querySelectorAll('.card');
+const moves = document.querySelector('.moves');
 let openCards = [];
 
+let moveCount = 0;
+moves.textContent = moveCount;
 
 
+// Flip card when clicked
 cards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
 
@@ -60,6 +63,7 @@ cards.forEach(function(card) {
 			card.classList.add('open', 'show');
 
 			if(openCards.length === 2) {
+				// If cards match
 				if(openCards[0].dataset.card === openCards[1].dataset.card) {
 					openCards[0].classList.add('match');
 					openCards[0].classList.add('open');
@@ -67,6 +71,8 @@ cards.forEach(function(card) {
 					openCards[1].classList.add('match');
 					openCards[1].classList.add('open');
 					openCards[1].classList.add('show');
+					moveCount += 1;
+					moves.textContent = moveCount;
 					openCards = [];
 				} else {
 					// Hide cards if not match
@@ -76,6 +82,8 @@ cards.forEach(function(card) {
 						});
 						openCards = [];
 					}, 1000);
+					moveCount += 1;
+					moves.textContent = moveCount;
 				}
 			}
 		}
