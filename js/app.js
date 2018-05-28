@@ -48,11 +48,22 @@ displayCards();
 
 const cards = document.querySelectorAll('.card');
 const moves = document.querySelector('.moves');
+const restart = document.querySelector('.restart');
 let openCards = [];
 
+// Count number of moves
 let moveCount = 0;
-moves.textContent = moveCount;
+displayCount();
+function displayCount() {
+	moves.textContent = moveCount;
+}
 
+// Refresh when click restart
+restart.addEventListener('click', function() {
+	moveCount = 0;
+	displayCount();
+	displayCards();
+})
 
 // Flip card when clicked
 cards.forEach(function(card) {
@@ -72,7 +83,7 @@ cards.forEach(function(card) {
 					openCards[1].classList.add('open');
 					openCards[1].classList.add('show');
 					moveCount += 1;
-					moves.textContent = moveCount;
+					displayCount();
 					openCards = [];
 				} else {
 					// Hide cards if not match
@@ -83,7 +94,7 @@ cards.forEach(function(card) {
 						openCards = [];
 					}, 1000);
 					moveCount += 1;
-					moves.textContent = moveCount;
+					displayCount();
 				}
 			}
 		}
