@@ -1,9 +1,5 @@
-/*
- * Create a list that holds all of your cards
- */
 const allCards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 
 			   'fa-cube', 'fa-cube', 'fa-anchor', 'fa-anchor', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle'];
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -45,11 +41,22 @@ function shuffle(array) {
 
  // Display shuffled cards when page loads
 displayCards();
+displayStars(3);
 
 const cards = document.querySelectorAll('.card');
 const moves = document.querySelector('.moves');
 const restart = document.querySelector('.restart');
 let openCards = [];
+
+// Display stars for rating 
+function displayStars(n) {
+	const stars = document.querySelector('.stars');
+	let starsHTML = '';
+	for(let i = 0; i < n; i++) {
+		starsHTML += `<li><i class="fa fa-star"></i></li>`;
+	}
+	stars.innerHTML = starsHTML;
+}
 
 // Count number of moves
 let moveCount = 0;
@@ -60,10 +67,21 @@ function displayCount() {
 
 // Refresh when click restart
 restart.addEventListener('click', function() {
-	moveCount = 0;
-	displayCount();
-	displayCards();
-})
+	window.location.reload(true);
+});
+
+// Star rating
+function starRating(n) {
+	if(n >= 20) {
+		displayStars(0);
+	} else if (n >= 16) {
+		displayStars(1);
+	} else if (n >= 12) {
+		displayStars(2);
+	} else {
+		displayStars(3);
+	}
+}
 
 // Flip card when clicked
 cards.forEach(function(card) {
@@ -76,13 +94,11 @@ cards.forEach(function(card) {
 			if(openCards.length === 2) {
 				// If cards match
 				if(openCards[0].dataset.card === openCards[1].dataset.card) {
-					openCards[0].classList.add('match');
-					openCards[0].classList.add('open');
-					openCards[0].classList.add('show');
-					openCards[1].classList.add('match');
-					openCards[1].classList.add('open');
-					openCards[1].classList.add('show');
-					moveCount += 1;
+					openCards.forEach(function(card) {
+						card.classList.add('match', 'open', 'show');
+					});
+					moveCount += 1;			
+					starRating(moveCount);
 					displayCount();
 					openCards = [];
 				} else {
@@ -94,6 +110,7 @@ cards.forEach(function(card) {
 						openCards = [];
 					}, 1000);
 					moveCount += 1;
+					starRating(moveCount);
 					displayCount();
 				}
 			}
