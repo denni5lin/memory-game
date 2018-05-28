@@ -1,7 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const allCards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 
+			   'fa-cube', 'fa-cube', 'fa-anchor', 'fa-anchor', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle'];
 
 /*
  * Display the cards on the page
@@ -9,6 +10,13 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ function displayCards() {
+	const deck = document.querySelector('.deck');
+	let cardHTML = shuffle(allCards).map(function(card) {
+		return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
+	});
+	deck.innerHTML = cardHTML.join('');
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -35,10 +43,13 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+ // Start game - display all shuffled cards
+displayCards();
 
 // Flip card when clicked
 const cards = document.querySelectorAll('.card');
 let openCards = [];
+
 
 
 cards.forEach(function(card) {
