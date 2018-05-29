@@ -83,6 +83,13 @@ function starRating(n) {
 	}
 }
 
+// Timer 
+const timer = document.getElementById('timer');
+let second = 0,
+    minute = 0;
+let interval;
+let timerRunning = false;
+
 // Flip card when clicked
 cards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
