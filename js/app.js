@@ -41,7 +41,7 @@ function shuffle(array) {
 
  // Display shuffled cards when page loads
 displayCards();
-displayStars(3);
+displayStars(5);
 
 const cards = document.querySelectorAll('.card');
 const moves = document.querySelector('.moves');
@@ -72,14 +72,16 @@ restart.addEventListener('click', function() {
 
 // Star rating
 function starRating(n) {
-	if(n >= 20) {
-		displayStars(0);
-	} else if (n >= 16) {
+	if(n >= 30) {
 		displayStars(1);
-	} else if (n >= 12) {
+	} else if (n >= 25) {
 		displayStars(2);
-	} else {
+	} else if (n >= 20) {
 		displayStars(3);
+	} else if (n >= 15){
+		displayStars(4);
+	} else {
+		displayStars(5);
 	}
 }
 
@@ -112,7 +114,7 @@ cards.forEach(function(card) {
 					// Hide cards if not match
 					setTimeout(function() {
 						openCards.forEach(function(card) {
-						card.classList.remove('open', 'show');
+							card.classList.remove('open', 'show');
 						});
 						openCards = [];
 					}, 1000);
