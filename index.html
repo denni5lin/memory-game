@@ -5,6 +5,15 @@
     <title>Matching Game</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+
+    <!-- Other 3rd Party JS Libraries -->
+     <script src="js/easytimer.min.js"></script> <!-- Source: https://github.com/albert-gonzalez/easytimer.js -->
+
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
 </head>
@@ -22,7 +31,9 @@
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
-        <span id="timer">0 mins 0 secs</span>
+        <div class="timer">
+          <span id="timer" class="text">00:00:00</span>
+        </div>
         <ul class="deck"></ul>
     </div>
 

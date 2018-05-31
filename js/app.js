@@ -28,6 +28,22 @@ function shuffle(array) {
     return array;
 }
 
+// Timer
+let timer = new Timer;
+let finalTime = '';
+
+// EasyTimer.js -- source: https://github.com/albert-gonzalez/easytimer.js
+function startTimer() {
+  timer.start();
+  timer.addEventListener('secondsUpdated', function (e) {
+      $('#timer').html(timer.getTimeValues().toString());
+  });
+}
+
+// Add start and stop functionality to buttons
+//document.querySelector(".start").addEventListener("click", start);
+//document.querySelector(".stop").addEventListener("click", stop);
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -85,17 +101,13 @@ function starRating(n) {
 	}
 }
 
-// Timer 
-const timer = document.getElementById('timer');
-let second = 0,
-    minute = 0;
-let interval;
-let timerRunning = false;
+// Get final time
+// finalTime = $('#timer').html().toString();
 
 // Flip card when clicked
 cards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
-
+		startTimer();
 		if(!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
 			openCards.push(card);
 			card.classList.add('open', 'show');
@@ -104,20 +116,24 @@ cards.forEach(function(card) {
 				// If cards match
 				if(openCards[0].dataset.card === openCards[1].dataset.card) {
 					openCards.forEach(function(card) {
-						card.classList.add('match', 'open', 'show');
+						card.classList.add('match', 'open', 'show', 'animated', 'rubberBand');
 					});
 					moveCount += 1;			
 					starRating(moveCount);
 					displayCount();
 					openCards = [];
 				} else {
-					// Hide cards if not match
+					// Shake if not match
+			      	openCards.forEach(function(card) {
+			        	card.classList.add('animated', 'shake');
+				      })
+				      // Hide cards and remove animation if not match
 					setTimeout(function() {
 						openCards.forEach(function(card) {
-							card.classList.remove('open', 'show');
+							card.classList.remove('open', 'show', 'animated', 'shake');
 						});
 						openCards = [];
-					}, 1000);
+					}, 500);
 					moveCount += 1;
 					starRating(moveCount);
 					displayCount();
