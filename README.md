@@ -2,19 +2,28 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Description](#description)
+* [Instruction](#instruction)
+* [Dependencies](#dependencies)
+* [License](#license)
+
+
+## Description
+
+Front end web developer nanodegree project. 
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Dependencies
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+* Font Awesome
+* Google Fonts
+* Easytimer.js
+* Animate.css
 
-## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+## License
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Feel free to do whatever you want with it. 
