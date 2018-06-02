@@ -1,5 +1,5 @@
 const allCards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 
-			   'fa-cube', 'fa-cube', 'fa-anchor', 'fa-anchor', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle'];
+			   'fa-cube', 'fa-cube', 'fa-bomb', 'fa-bomb', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle'];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -40,10 +40,6 @@ function startTimer() {
   });
 }
 
-// Add start and stop functionality to buttons
-//document.querySelector(".start").addEventListener("click", start);
-//document.querySelector(".stop").addEventListener("click", stop);
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -63,6 +59,7 @@ const cards = document.querySelectorAll('.card');
 const moves = document.querySelector('.moves');
 const restart = document.querySelector('.restart');
 let openCards = [];
+let matchedCards = [];
 
 // Display stars for rating 
 function displayStars(n) {
@@ -83,26 +80,73 @@ function displayCount() {
 
 // Refresh when click restart
 restart.addEventListener('click', function() {
-	window.location.reload(true);
+	location.reload(true);
 });
 
 // Star rating
+let starCount;
 function starRating(n) {
 	if(n >= 30) {
 		displayStars(1);
+		starCount = 1;
 	} else if (n >= 25) {
 		displayStars(2);
+		starCount = 2;
 	} else if (n >= 20) {
 		displayStars(3);
+		starCount = 3;
 	} else if (n >= 15){
 		displayStars(4);
+		starCount = 4;
 	} else {
 		displayStars(5);
+		starCount = 5;
 	}
 }
 
 // Get final time
-// finalTime = $('#timer').html().toString();
+function gameOver() {
+  timer.stop();
+  finalTime = $('#timer').html().toString();
+}
+
+// Get modal element
+const modal = document.getElementById('simpleModal');
+const modalContent = document.getElementById('modal-content');
+// const modalBtn = document.getElementById('modalBtn');
+const result = document.getElementById('result');
+
+// Get close button
+const closeBtn = document.getElementById('closeBtn');
+
+// Modal hide background
+const modalHide = document.getElementById('modalHide');
+
+// modalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+
+// Click to close modal
+window.addEventListener('click', outsideClick);
+
+function openModal() {
+	modal.style.display = 'block';
+	result.insertAdjacentHTML('beforeend',`<p>Your time was: ${finalTime}</p>`);	
+	result.insertAdjacentHTML('beforeend',`<p>With ${moveCount} Moves and ${starCount} Stars.</p>`);
+	result.insertAdjacentHTML('beforeend',`<p>Wooooooo!</p>`);
+	modalHide.style.display = 'none';
+}
+
+function closeModal() {
+	modal.style.display = 'none';
+	location.reload(true);
+}
+
+function outsideClick(e) {
+	if(e.target == modal) {
+		modal.style.display = 'none';
+		location.reload(true);
+	}
+}
 
 // Flip card when clicked
 cards.forEach(function(card) {
@@ -111,12 +155,18 @@ cards.forEach(function(card) {
 		if(!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
 			openCards.push(card);
 			card.classList.add('open', 'show');
-
 			if(openCards.length === 2) {
 				// If cards match
 				if(openCards[0].dataset.card === openCards[1].dataset.card) {
 					openCards.forEach(function(card) {
 						card.classList.add('match', 'open', 'show', 'animated', 'rubberBand');
+			            matchedCards.push(card);
+			            // console.log(matchedCards.length);
+			            // WHEN ALL CARDS MATCHED!
+			            if(matchedCards.length === 16) {
+			            	gameOver();
+			            	openModal();
+			            }
 					});
 					moveCount += 1;			
 					starRating(moveCount);

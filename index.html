@@ -5,21 +5,34 @@
     <title>Matching Game</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- https://github.com/daneden/animate.css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <!-- jQuery for easytimer only -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
 
     <!-- Other 3rd Party JS Libraries -->
-     <script src="js/easytimer.min.js"></script> <!-- Source: https://github.com/albert-gonzalez/easytimer.js -->
-
+    <script src="js/easytimer.min.js"></script> <!-- Source: https://github.com/albert-gonzalez/easytimer.js -->
+    <link href="https://fonts.googleapis.com/css?family=Tenor+Sans" rel="stylesheet">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+    <div id='simpleModal' class='modal'>
+        <div class='modal-content'>
+            <header>
+                <h2 class='animated slideInDown'>You won!</h2>
+            </header>
+            <p id='result'></p>
 
-    <div class="container">
+            <button id='closeBtn' type='button' class="btn btn-success">Restart</button>
+
+        </div>
+    </div>
+    <div class="container" id='modalHide'>
         <header>
             <h1>Matching Game</h1>
         </header>
@@ -36,6 +49,9 @@
         </div>
         <ul class="deck"></ul>
     </div>
+    <!-- Testing only
+    <button id='modalBtn' class='button'>Click Here</button>
+    -->
 
     <script src="js/app.js"></script>
 
