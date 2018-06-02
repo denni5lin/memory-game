@@ -1,5 +1,7 @@
-const allCards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 
-			   'fa-cube', 'fa-cube', 'fa-bomb', 'fa-bomb', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle'];
+const allCards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 
+					'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 
+					'fa-cube', 'fa-bomb', 'fa-bomb', 'fa-leaf', 'fa-leaf', 
+					'fa-bicycle', 'fa-bicycle'];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -29,7 +31,7 @@ function shuffle(array) {
 }
 
 // Timer
-let timer = new Timer;
+let timer = new Timer();
 let finalTime = '';
 
 // EasyTimer.js -- source: https://github.com/albert-gonzalez/easytimer.js
@@ -176,7 +178,7 @@ cards.forEach(function(card) {
 					// Shake if not match
 			      	openCards.forEach(function(card) {
 			        	card.classList.add('animated', 'shake');
-				      })
+				      });
 				      // Hide cards and remove animation if not match
 					setTimeout(function() {
 						openCards.forEach(function(card) {
@@ -190,5 +192,5 @@ cards.forEach(function(card) {
 				}
 			}
 		}
-	})
-})
+	});
+});
