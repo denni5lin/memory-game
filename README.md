@@ -21,7 +21,7 @@ Front end web developer nanodegree project.
 
 ## Instructions
 
-The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match! You can play the game [here](https://denni5lin.github.io/memory-game/).
+The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match! 
 
 ## Dependencies
 
